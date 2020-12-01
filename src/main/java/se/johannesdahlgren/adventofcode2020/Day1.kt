@@ -1,11 +1,8 @@
 package se.johannesdahlgren.adventofcode2020
 
-import java.io.File
-
 class Day1(fileName: String) {
 
-    private val input: List<Long> = File(ClassLoader.getSystemResource(fileName).file)
-        .useLines { it.map { s -> s.toLong() }.toList() }
+    private val input: List<Long> = readFileToLongList(fileName)
 
     fun fixExpenseReport(sum: Long): Long {
         val factors = findSum(input, sum)
