@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 class Day1Test {
 
     @Test
-    fun findSumPart1Example() {
+    fun fixExpenseReportPart1Example() {
         val day1 = Day1("day1_example.txt")
         val answer = day1.fixExpenseReport(2020)
 
@@ -14,7 +14,7 @@ class Day1Test {
     }
 
     @Test
-    fun findSumPart1() {
+    fun fixExpenseReportPart1() {
         val day1 = Day1("day1.txt")
         val answer = day1.fixExpenseReport(2020)
 
@@ -22,7 +22,7 @@ class Day1Test {
     }
 
     @Test
-    fun findSumPart2Example() {
+    fun fixExpenseReportPart2Example() {
         val day1 = Day1("day1_example.txt")
         val answer = day1.fixExpenseReportThree(2020)
 
@@ -30,7 +30,7 @@ class Day1Test {
     }
 
     @Test
-    fun findSumPart2() {
+    fun fixExpenseReportPart2() {
         val day1 = Day1("day1.txt")
         val answer = day1.fixExpenseReportThree(2020)
 
