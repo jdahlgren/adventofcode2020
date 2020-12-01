@@ -14,11 +14,11 @@ class Day1Test {
     }
 
     @Test
-    fun findSumPart2Example() {
-        val day1 = Day1("day1_example.txt")
+    fun findSumPart1() {
+        val day1 = Day1("day1.txt")
         val answer = day1.fixExpenseReport(2020)
 
-        assertEquals(241861950, answer)
+        assertEquals(259716, answer)
     }
 
 }
