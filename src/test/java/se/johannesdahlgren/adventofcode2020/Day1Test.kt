@@ -21,4 +21,19 @@ class Day1Test {
         assertEquals(259716, answer)
     }
 
+    @Test
+    fun findSumPart2Example() {
+        val day1 = Day1("day1_example.txt")
+        val answer = day1.fixExpenseReportThree(2020)
+
+        assertEquals(241861950, answer)
+    }
+
+    @Test
+    fun findSumPart2() {
+        val day1 = Day1("day1.txt")
+        val answer = day1.fixExpenseReportThree(2020)
+
+        assertEquals(120637440, answer)
+    }
 }
