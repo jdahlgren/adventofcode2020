@@ -4,31 +4,35 @@ class Day2(fileName: String) {
     private val input = readFileToStringList(fileName)
     private var correctPasswords = 0
 
-    fun getCorrectPasswords(system: String): Int {
+    fun getCorrectPasswordsSledRental(): Int {
         input.forEach { s ->
-            val policyPassword = s.split(":")
-            val minMaxChar = policyPassword[0].split(" ")
-            val password = policyPassword[1].trim()
-            val minMax = minMaxChar[0].split("-")
-            val key = minMaxChar[1][0]
-            val min = minMax[0].toInt()
-            val max = minMax[1].toInt()
+            val splits = splitInputByRegex(s)
+            val (_, min, max, key, password) = splits.destructured
 
-            if(system == "sledRental") {
-                val count = password.count { key == it }
-                if (count in min..max) {
-                    correctPasswords++
-                }
+            val count = password.count { key[0] == it }
+            if (count in min.toInt()..max.toInt()) {
+                correctPasswords++
             }
-
-            if(system == "tobogganCorp") {
-                if ((password[min - 1] == key).xor(password[max - 1] == key)) {
-                    correctPasswords++
-                }
-            }
-
         }
-
         return correctPasswords
+    }
+
+    fun getCorrectPasswordsTobogganCorp(): Int {
+        input.forEach { s ->
+            val splits = splitInputByRegex(s)
+            val (_, min, max, key, password) = splits.destructured
+
+            val matchPos1 = password[min.toInt() - 1] == key[0]
+            val matchPos2 = password[max.toInt() - 1] == key[0]
+            if (matchPos1.xor(matchPos2)) {
+                correctPasswords++
+            }
+        }
+        return correctPasswords
+    }
+
+    private fun splitInputByRegex(s: String): MatchResult {
+        val regex = Regex("((\\d+)-(\\d+) (\\S): (.*))")
+        return regex.find(s)!!
     }
 }
