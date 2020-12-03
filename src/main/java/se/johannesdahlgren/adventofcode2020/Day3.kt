@@ -9,8 +9,8 @@ class Day3(fileName: String) {
     fun countTrees(stepRight: Int, stepDown: Int): Long {
         var trees: Long = 0
         var col = 0
-        for (x in map.indices step stepDown) {
-            val row = map[x]
+        for (y in map.indices step stepDown) {
+            val row = map[y]
             if (row[col] == TREE) {
                 trees++
             }
