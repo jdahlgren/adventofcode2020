@@ -14,3 +14,7 @@ fun readFileTo2DArray(fileName: String): List<List<Char>> =
     File(ClassLoader.getSystemResource(fileName).file)
         .readLines()
         .map { it.toList() }
+
+fun readFileToString(fileName: String): String =
+    File(ClassLoader.getSystemResource(fileName).file)
+        .readText()
