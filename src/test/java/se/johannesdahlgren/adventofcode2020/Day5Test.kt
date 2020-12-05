@@ -38,4 +38,11 @@ internal class Day5Test {
         val highestSeatId = day5.highestSeatId(readFileToStringList("day5"))
         assertEquals(888, highestSeatId)
     }
+
+    @Test
+    fun part2() {
+        val day5 = Day5()
+        val mySeat = day5.findMySeat(readFileToStringList("day5"))
+        assertEquals(522, mySeat)
+    }
 }
