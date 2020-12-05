@@ -1,6 +1,6 @@
 package se.johannesdahlgren.adventofcode2020
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class Day5Test {
@@ -10,12 +10,14 @@ internal class Day5Test {
         val seatId = day5.findSeatId("BFFFBBFRRR")
         assertEquals(567, seatId)
     }
+
     @Test
     fun part1Example2() {
         val day5 = Day5()
         val seatId = day5.findSeatId("FFFBBBFRRR")
         assertEquals(119, seatId)
     }
+
     @Test
     fun part1Example3() {
         val day5 = Day5()
