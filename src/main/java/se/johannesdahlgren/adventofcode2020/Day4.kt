@@ -1,19 +1,13 @@
 package se.johannesdahlgren.adventofcode2020
 
-import kotlin.streams.toList
-
 class Day4(private val fileName: String) {
 
     private val blankLinePattern = "^\\s*\$"
     private val mandatoryFields = listOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
 
-    fun getPassportsWithRequiredFields(): Long {
+    fun getPassportsWithRequiredFields(): Int {
         val passPorts = getPassportsFromFile()
-
-        return passPorts.stream()
-            .map { getPassportKeys(it) }
-            .filter { it.containsAll(mandatoryFields) }
-            .count()
+        return passPorts.count { passport -> mandatoryFields.all { passport.contains(it) }}
     }
 
     fun getValidPassports(): Long {
@@ -33,14 +27,6 @@ class Day4(private val fileName: String) {
         val validEcl = "ecl:(amb|blu|brn|gry|grn|hzl|oth)".toRegex().containsMatchIn(passPort)
         val validPid = "pid:\\d{9}\\b".toRegex().containsMatchIn(passPort)
         return validByr && validIyr && validEyr && validHcl && validEcl && validPid && validHgt
-    }
-
-
-    private fun getPassportKeys(passPort: String): List<String> {
-        val matchPassportKeys = "(.{3}):".toRegex().findAll(passPort).toList()
-        return matchPassportKeys.stream()
-            .map { it.groupValues[1] }
-            .toList()
     }
 
     private fun getPassportsFromFile(): List<String> {
