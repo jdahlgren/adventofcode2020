@@ -2,7 +2,6 @@ package se.johannesdahlgren.adventofcode2020
 
 class Day4(private val fileName: String) {
 
-    private val blankLinePattern = "^\\s*\$"
     private val mandatoryFields = listOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
 
     fun getPassportsWithRequiredFields(): Int {
@@ -30,7 +29,6 @@ class Day4(private val fileName: String) {
     }
 
     private fun getPassportsFromFile(): List<String> {
-        val batchFile = readFileToString(fileName)
-        return batchFile.split(Regex(blankLinePattern, RegexOption.MULTILINE))
+        return  readFileToStringListSplitEmptyLine(fileName)
     }
 }
