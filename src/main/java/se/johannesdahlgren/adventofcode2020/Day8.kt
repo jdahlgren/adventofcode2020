@@ -13,13 +13,17 @@ class Day8(private val instructions: List<String>) {
         val operation = split[0]
         val argument = split[1].toInt()
 
-        if (operation == "nop") {
-            getValueInAccumulator(currentInstruction + 1)
-        } else if (operation == "acc") {
-            accumulator += argument
-            getValueInAccumulator(currentInstruction + 1)
-        } else if (operation == "jmp") {
-            getValueInAccumulator(currentInstruction + argument)
+        when (operation) {
+            "nop" -> {
+                getValueInAccumulator(currentInstruction + 1)
+            }
+            "acc" -> {
+                accumulator += argument
+                getValueInAccumulator(currentInstruction + 1)
+            }
+            "jmp" -> {
+                getValueInAccumulator(currentInstruction + argument)
+            }
         }
         return accumulator
     }
