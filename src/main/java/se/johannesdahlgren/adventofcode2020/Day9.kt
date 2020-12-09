@@ -20,4 +20,23 @@ class Day9(private val input: List<Int>) {
         }
         return sums
     }
+
+    fun findEncryptionWeakness(preamble: Int): Int {
+        val invalidNumber = findFirstInvalidNumber(preamble)
+        for (i in 0..input.size) {
+            var sum = 0
+            val indices = mutableListOf<Int>()
+            for (j in i .. input.size) {
+                sum += input[j]
+                indices.add(j)
+                if(sum > invalidNumber) {
+                    break
+                } else if (sum == invalidNumber) {
+                    val contiguousIndices = input.filterIndexed { index, _ -> indices.contains(index) }
+                    return contiguousIndices.minOrNull()!! + contiguousIndices.maxOrNull()!!
+                }
+            }
+        }
+        return -1
+    }
 }
