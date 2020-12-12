@@ -14,14 +14,14 @@ class Day8(private val instructions: List<String>) {
         val argument = split[1].toInt()
 
         when (operation) {
-            "nop" -> {
+            NO_OPERATION -> {
                 getValueInAccumulator(currentInstruction + 1)
             }
-            "acc" -> {
+            ACCUMULATOR_OPERATION -> {
                 accumulator += argument
                 getValueInAccumulator(currentInstruction + 1)
             }
-            "jmp" -> {
+            JUMP_OPERATION -> {
                 getValueInAccumulator(currentInstruction + argument)
             }
         }
@@ -32,9 +32,9 @@ class Day8(private val instructions: List<String>) {
         var instructionsCopy = instructions.toMutableList()
         val indexToInvestigate = instructions
             .mapIndexed { index, it -> Pair(index, it) }
-            .filter { it.second.contains("nop") || it.second.contains("jmp") }
+            .filter { it.second.contains(NO_OPERATION) || it.second.contains(JUMP_OPERATION) }
             .toMutableList()
-        indexToInvestigate.add(Pair(0, "nop"))
+        indexToInvestigate.add(Pair(0, NO_OPERATION))
 
         for (index in indexToInvestigate) {
             usedIndexes.clear()
@@ -46,10 +46,10 @@ class Day8(private val instructions: List<String>) {
                 instructionsCopy = instructions.toMutableList()
                 val operationAtIndex = instructionsCopy[index.first]
                 val split = operationAtIndex.split(" ")
-                if (split[0] == "nop") {
-                    instructionsCopy[index.first] = "jmp ${split[1]}"
+                if (split[0] == NO_OPERATION) {
+                    instructionsCopy[index.first] = "$JUMP_OPERATION ${split[1]}"
                 } else {
-                    instructionsCopy[index.first] = "nop ${split[1]}"
+                    instructionsCopy[index.first] = "$NO_OPERATION ${split[1]}"
                 }
             }
         }
@@ -71,14 +71,14 @@ class Day8(private val instructions: List<String>) {
         val argument = split[1].toInt()
 
         when (operation) {
-            "nop" -> {
+            NO_OPERATION -> {
                 success = runInstructions(instructionsCopy, currentInstruction + 1)
             }
-            "acc" -> {
+            ACCUMULATOR_OPERATION -> {
                 accumulator += argument
                 success = runInstructions(instructionsCopy, currentInstruction + 1)
             }
-            "jmp" -> {
+            JUMP_OPERATION -> {
                 success = runInstructions(instructionsCopy, currentInstruction + argument)
             }
         }

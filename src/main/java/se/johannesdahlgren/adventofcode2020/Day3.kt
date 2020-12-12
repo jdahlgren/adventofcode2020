@@ -1,7 +1,5 @@
 package se.johannesdahlgren.adventofcode2020
 
-private const val TREE = '#'
-
 class Day3(fileName: String) {
 
     private val map = readFileTo2DArray(fileName)

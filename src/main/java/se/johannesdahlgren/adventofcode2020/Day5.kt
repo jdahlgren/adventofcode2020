@@ -9,7 +9,7 @@ class Day5 {
 
         var correctRow = (0..127).toList()
         for (rowPart in rowParts) {
-            correctRow = if (rowPart == 'F') {
+            correctRow = if (rowPart == LOWER_HALF_ROW) {
                 correctRow.take(correctRow.count() / 2)
             } else {
                 correctRow.takeLast(correctRow.count() / 2)
@@ -19,7 +19,7 @@ class Day5 {
         val colParts = boardingPass.toCharArray().takeLast(3)
         var correctColumn = (0..7).toList()
         for (colPart in colParts) {
-            correctColumn = if (colPart == 'L') {
+            correctColumn = if (colPart == LOWER_HALF_COL) {
                 correctColumn.take(correctColumn.count() / 2)
             } else {
                 correctColumn.takeLast(correctColumn.count() / 2)

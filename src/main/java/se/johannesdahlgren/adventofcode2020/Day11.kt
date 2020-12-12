@@ -13,12 +13,12 @@ class Day11 {
                     val currentSeat = seatMap[rowIndex][colIndex]
 //                    print(currentSeat)
                     when {
-                        currentSeat == 'L' && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) == 0 -> {
-                            nextSeatMap[rowIndex][colIndex] = '#'
+                        currentSeat == EMPTY_SEAT && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) == 0 -> {
+                            nextSeatMap[rowIndex][colIndex] = OCCUPIED_SEAT
                             seatsChanged++
                         }
-                        currentSeat == '#' && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) >= 4 -> {
-                            nextSeatMap[rowIndex][colIndex] = 'L'
+                        currentSeat == OCCUPIED_SEAT && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) >= 4 -> {
+                            nextSeatMap[rowIndex][colIndex] = EMPTY_SEAT
                             seatsChanged++
                         }
                     }
@@ -28,7 +28,7 @@ class Day11 {
             seatMap = nextSeatMap
 //            println()
         }
-        return seatMap.flatten().count { it == '#' }
+        return seatMap.flatten().count { it == OCCUPIED_SEAT }
     }
 
     private fun occupiedAdjacentSeats(seatMap: List<List<Char>>, currentRow: Int, currentCol: Int): Int {
@@ -41,7 +41,7 @@ class Day11 {
                 if (!currentSeat &&
                     adjacentRow in seatMap.indices &&
                     adjacentCol in seatMap[currentRow].indices &&
-                    seatMap[adjacentRow][adjacentCol] == '#'
+                    seatMap[adjacentRow][adjacentCol] == OCCUPIED_SEAT
                 ) {
                     occupiedAdjacentSeats++
                 }
@@ -63,12 +63,12 @@ class Day11 {
 //                    print(currentSeat)
                     val occupiedVisibleSeats = occupiedVisibleSeats(seatMap, rowIndex, colIndex)
                     when {
-                        currentSeat == 'L' && occupiedVisibleSeats == 0 -> {
-                            nextSeatMap[rowIndex][colIndex] = '#'
+                        currentSeat == EMPTY_SEAT && occupiedVisibleSeats == 0 -> {
+                            nextSeatMap[rowIndex][colIndex] = OCCUPIED_SEAT
                             seatsChanged++
                         }
-                        currentSeat == '#' && occupiedVisibleSeats >= 5 -> {
-                            nextSeatMap[rowIndex][colIndex] = 'L'
+                        currentSeat == OCCUPIED_SEAT && occupiedVisibleSeats >= 5 -> {
+                            nextSeatMap[rowIndex][colIndex] = EMPTY_SEAT
                             seatsChanged++
                         }
                     }
@@ -78,7 +78,7 @@ class Day11 {
             seatMap = nextSeatMap
 //            println()
         }
-        return seatMap.flatten().count { it == '#' }
+        return seatMap.flatten().count { it == OCCUPIED_SEAT }
     }
 
     private fun occupiedVisibleSeats(seatMap: List<List<Char>>, currentRow: Int, currentCol: Int): Int {
@@ -104,9 +104,9 @@ class Day11 {
         var nextRow = currentRow + rowDirection
         var nextCol = currentCol + colDirection
         while (nextRow in seatMap.indices && nextCol in seatMap[currentRow].indices ) {
-            if(seatMap[nextRow][nextCol] == 'L') {
+            if(seatMap[nextRow][nextCol] == EMPTY_SEAT) {
                 return 0
-            } else if(seatMap[nextRow][nextCol] == '#') {
+            } else if(seatMap[nextRow][nextCol] == OCCUPIED_SEAT) {
                 return 1
             }
             nextRow += rowDirection
