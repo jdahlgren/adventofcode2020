@@ -2,12 +2,12 @@ package se.johannesdahlgren.adventofcode2020
 
 class Day11 {
     fun getOccupiedSeatsWhenStable(input: List<List<Char>>): Int {
-        var seatMap = input.map { it.toCharArray() }.toTypedArray()
+        var seatMap = input.toList()
         var seatsChanged = -1
 
         while (seatsChanged != 0) {
             seatsChanged = 0
-            val nextSeatMap = seatMap.map { it.copyOf() }.toTypedArray()
+            val nextSeatMap = seatMap.map { it.toMutableList() }.toList()
             for (rowIndex in seatMap.indices) {
                 for (colIndex in seatMap[rowIndex].indices) {
                     val currentSeat = seatMap[rowIndex][colIndex]
@@ -28,10 +28,10 @@ class Day11 {
             seatMap = nextSeatMap
 //            println()
         }
-        return seatMap.map { it.toList() }.toList().flatten().count { it == '#' }
+        return seatMap.flatten().count { it == '#' }
     }
 
-    private fun occupiedAdjacentSeats(seatMap: Array<CharArray>, currentRow: Int, currentCol: Int): Int {
+    private fun occupiedAdjacentSeats(seatMap: List<List<Char>>, currentRow: Int, currentCol: Int): Int {
         var occupiedAdjacentSeats = 0
         for (i in -1..1) {
             for (j in -1..1) {
