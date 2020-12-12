@@ -13,11 +13,11 @@ class Day11 {
                     val currentSeat = seatMap[rowIndex][colIndex]
 //                    print(currentSeat)
                     when {
-                        currentSeat == 'L' && hasOccupiedAdjacentSeats(seatMap, rowIndex, colIndex) == 0 -> {
+                        currentSeat == 'L' && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) == 0 -> {
                             nextSeatMap[rowIndex][colIndex] = '#'
                             seatsChanged++
                         }
-                        currentSeat == '#' && hasOccupiedAdjacentSeats(seatMap, rowIndex, colIndex) >= 4 -> {
+                        currentSeat == '#' && occupiedAdjacentSeats(seatMap, rowIndex, colIndex) >= 4 -> {
                             nextSeatMap[rowIndex][colIndex] = 'L'
                             seatsChanged++
                         }
@@ -28,12 +28,10 @@ class Day11 {
             seatMap = nextSeatMap
 //            println()
         }
-
-
         return seatMap.map { it.toList() }.toList().flatten().count { it == '#' }
     }
 
-    private fun hasOccupiedAdjacentSeats(seatMap: Array<CharArray>, currentRow: Int, currentCol: Int): Int {
+    private fun occupiedAdjacentSeats(seatMap: Array<CharArray>, currentRow: Int, currentCol: Int): Int {
         var occupiedAdjacentSeats = 0
         for (i in -1..1) {
             for (j in -1..1) {
