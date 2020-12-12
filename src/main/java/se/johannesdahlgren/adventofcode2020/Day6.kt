@@ -3,13 +3,13 @@ package se.johannesdahlgren.adventofcode2020
 class Day6 {
     fun sumAnyoneYes(fileName: String): Int {
         val answersFromGroups = readFileToStringListSplitEmptyLine(fileName)
-        return answersFromGroups.stream()
+        return answersFromGroups
+            .asSequence()
             .map { it.replace("\r\n", "") }
             .map { it.toCharArray() }
             .map { it.distinct() }
             .map { it.count() }
             .reduce { a, b -> a + b }
-            .orElse(-1)
     }
 
     fun sumEveryoneYes(fileName: String): Int {
