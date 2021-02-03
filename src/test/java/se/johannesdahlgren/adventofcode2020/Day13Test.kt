@@ -16,5 +16,6 @@ internal class Day13Test {
         val day13 = Day13()
         val result: Pair<Int, Int> = day13.getBusIdAndTimeToNextDeparture(readFileToStringList("day13"))
         assertEquals(2298, result.first * result.second)
+        //Test
     }
 }
